@@ -41,7 +41,7 @@ public class MavenController {
         return;
       }
     } else {
-      log.info("ARTIFACT {} FOUND, SERVING");
+      log.info("ARTIFACT {} FOUND, SERVING", filePath);
     }
 
     IOUtils.copy(new FileInputStream(artifact), response.getOutputStream());
@@ -54,9 +54,9 @@ public class MavenController {
       artifact.getParentFile().mkdirs();
       URL url = new URL(remoteRepo+filePath);
       FileUtils.copyURLToFile(url, artifact);
-      log.info("ARTIFACT {} DOWNLOADED");
+      log.info("ARTIFACT {} DOWNLOADED", filePath);
     } catch (IOException e) {
-      log.info("ARTIFACT {} PROBLEMS");
+      log.info("ARTIFACT {} PROBLEMS", filePath);
       e.printStackTrace();
       return false;
     }
